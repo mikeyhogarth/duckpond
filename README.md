@@ -35,7 +35,7 @@ Or install it yourself as:
 
 ## Usage
 
-Usage is demonstrated in 'the_solution_spec', but in a nutshell you can create 
+Usage is demonstrated in '[the_solution_spec](spec/the_solution_spec.rb)', but in a nutshell you can create 
 "duck" classes by inheriting from DuckPond::Duck. This file should be commented
 extensively as it describes the contract the duck represents. 
 
