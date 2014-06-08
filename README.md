@@ -9,10 +9,12 @@ Duck Typing can make code confusing and unreadable, particularly
 when multiple developers are working on the same project or when 
 projects are inherited by new developers. 
 
-The spec folder has two files
+The spec folder has two files that go through the purpose of this gem
+in spec form. This would be a good place to start, although there is a crash 
+course below.
 
-* the_problem_spec - this outlines the problems with duck typing
-* the_solution_spec - this demonstrates how duckpond fixes this problem
+[the_problem_spec](spec/the_problem_spec.rb) - This outlines the problems with duck typing.
+[the_solution_spec](spec/the_solution_spec.rb) - This outlines how duckpond gets around these problems.
 
 
 ## Installation
