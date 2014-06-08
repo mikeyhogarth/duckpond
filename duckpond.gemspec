@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Mikey Hogarth"]
   spec.email         = ["mikehogarth20@hotmail.com"]
   spec.description   = %q{Explicit duck-typing for ruby}
-  spec.summary       = %q{See README file for details}
+  spec.summary       = %q{Explicit duck-typing for ruby}
   spec.homepage      = "https://github.com/mikeyhogarth/duckpond"
   spec.license       = "MIT"
 
