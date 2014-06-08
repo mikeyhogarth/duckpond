@@ -32,5 +32,6 @@ module DuckPond
       end
       true
     end
+    alias :looks_like? :quacks_like?
   end
 end

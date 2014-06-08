@@ -61,12 +61,14 @@ There are other syntaxes:
     DuckPond::Binoculars.confirm!(obj, MyDuck)
 
 
-Ducks can be combined into composite "super ducks" using the looks_like method - ducks which are made up of various other ducks:
+Ducks can be combined into composite "super ducks" - ducks which are made up of various other ducks:
 
     class MySuperDuck < DuckPond::Duck
-      looks_like MyDuck
-      looks_like MyOtherDuck
+      quacks_like MyDuck
+      quacks_like MyOtherDuck
     end
+
+the quacks_like method has been aliased to looks_like too - you can say something looks_like or quacks_like any item, whichever you prefer (in case you didn't want "quack" methods in your ever so serious project!).
 
 
 ## Contributing

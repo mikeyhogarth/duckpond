@@ -38,7 +38,7 @@ module DuckPond
   end
 
   class MySimilarDuck < Duck
-    looks_like MyDuck
+    quacks_like MyDuck
     quacks_like :chunky_bacon
   end
 

@@ -16,26 +16,39 @@ module DuckPond
       # quacks_like
       #
       # Use this to specify that this duck quacks with
-      # a certain method.
+      # a certain method, or quacks like another duck.
       #
-      def quacks_like(method)
-        quacks << method
+      def quacks_like(item)
+        if item.is_a? Symbol
+          quacks << item
+        elsif item.ancestors.include? DuckPond::Duck
+          add_quacks_from item
+        else
+          raise TypeError
+        end
       end
+      alias :looks_like :quacks_like
 
       #
-      # looks_like
+      # quacks_like?
       #
-      # Use this to specify that this duck looks like
-      # another duck.
+      # The main quack checking method for a duck
       #
-      def looks_like(other_duck)
+      def quacks_like?(method)
+        quacks.include?(method)
+      end
+      alias :looks_like? :quacks_like
+
+      private
+      #
+      # add_quacks_from
+      #
+      # add the quacks from another duck
+      #
+      def add_quacks_from(other_duck)
         other_duck.quacks.each do |other_ducks_quacking|
           quacks_like other_ducks_quacking
         end
-      end
-
-      def quacks_like?(method)
-        quacks.include?(method)
       end
 
     end
