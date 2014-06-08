@@ -33,10 +33,9 @@ module Duckpond
         # But there are a few other problems.
         #
         # You will often hear rubyists talking about the wonder of
-        # "duck typing". Because ruby is not strongly typed, developers
-        # can pass anything they want to the "bar" method above and it'll
-        # still work so long as the parameter responds to certain methods
-        # etc.
+        # "duck typing". Developers can pass anything they want to the "bar" 
+        # method above and it'll still work so long as the parameter responds 
+        # to certain methods etc.
         #
         # You will almost as often hear programmers freaking out about how 
         # chaotic and crazy this approach is! Arguments about such matters usually
