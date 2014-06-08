@@ -1,4 +1,3 @@
-
 module Duckpond
   module Test
     class Fooinator

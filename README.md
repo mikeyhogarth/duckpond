@@ -1,6 +1,19 @@
 # Duckpond
 
-TODO: Write a gem description
+Explicit duck typing for ruby.
+
+
+## Inspiration
+
+Duck Typing can make code confusing and unreadable, particularly 
+when multiple developers are working on the same project or when 
+projects are inherited by new developers. 
+
+The spec folder has two files
+
+* the_problem_spec - this outlines the problems with duck typing
+* the_solution_spec - this demonstrates how duckpond fixes this problem
+
 
 ## Installation
 
@@ -16,9 +29,42 @@ Or install it yourself as:
 
     $ gem install duckpond
 
+
 ## Usage
 
-TODO: Write usage instructions here
+Usage is demonstrated in 'the_solution_spec', but in a nutshell you can create 
+"duck" classes by inheriting from DuckPond::Duck. This file should be commented
+extensively as it describes the contract the duck represents. 
+
+    class MyDuck < DuckPond::Duck
+      quacks_like :length
+    end
+
+Once you've declared a duck, you can use "binoculars" to see if objects quack like
+that duck:
+
+    obj = "Hello World"
+    sighting = DuckPond::Binoculars.identify(obj)
+    sighting.quacks_like? MyDuck
+    => true
+
+There are other syntaxes:
+
+    #This syntax gets all the comparison done in one line
+    DuckPond::Binoculars.confirm(obj, MyDuck)
+    => true
+
+    #This syntax does the same thing, but raises an excaption instead of returning false 
+    DuckPond::Binoculars.confirm!(obj, MyDuck)
+
+
+Ducks can be combined into composite "super ducks" using the looks_like method - ducks which are made up of various other ducks:
+
+    class MySuperDuck < DuckPond::Duck
+      looks_like MyDuck
+      looks_like MyOtherDuck
+    end
+
 
 ## Contributing
 

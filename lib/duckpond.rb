@@ -1,5 +1,7 @@
-require "duckpond/version"
+require 'duckpond/version'
+require 'duckpond/duck'
+require 'duckpond/binoculars'
+require 'duckpond/sighting'
 
 module Duckpond
-  # Your code goes here...
 end

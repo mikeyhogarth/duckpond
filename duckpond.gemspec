@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Duckpond::VERSION
   spec.authors       = ["Mikey Hogarth"]
   spec.email         = ["mikehogarth20@hotmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Explicit duck-typing for ruby}
+  spec.summary       = %q{See README file for details}
   spec.homepage      = ""
   spec.license       = "MIT"
 
