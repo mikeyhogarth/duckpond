@@ -13,8 +13,9 @@ The spec folder has two files that go through the purpose of this gem
 in spec form. This would be a good place to start, although there is a crash 
 course below.
 
-[the_problem_spec](spec/the_problem_spec.rb) - This outlines the problems with duck typing.
-[the_solution_spec](spec/the_solution_spec.rb) - This outlines how duckpond gets around these problems.
+* [the_problem_spec](spec/the_problem_spec.rb) - This outlines the problems with duck typing.
+
+* [the_solution_spec](spec/the_solution_spec.rb) - This outlines how duckpond gets around these problems.
 
 
 ## Installation
