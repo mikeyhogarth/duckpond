@@ -41,7 +41,7 @@ extensively as it describes the contract the duck represents. The "quacks_like" 
 can be used to specify methods as symbols. 
 
     class MyDuck < DuckPond::Duck
-      quacks_like :length  #indicates "length" as a mehtod this duck has
+      quacks_like :length  
       quacks_like :to_s
     end
 
