@@ -71,7 +71,9 @@ Ducks can be combined into composite "super ducks" - ducks which are made up of 
     end
 
 the "quacks_like" methods have been aliased to "looks_like" too - you can say something "looks_like" or "quacks_like" any item, 
-whichever you prefer (in case you didn't want "quack" methods in your ever so serious project!). A *serious duck* might look like this:
+whichever you prefer. 
+
+A *serious duck* might look like this:
 
     class IEmailable < DuckPond::Duck
       #send: should send the results of :message via email to :to
