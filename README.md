@@ -37,10 +37,12 @@ Or install it yourself as:
 
 Usage is demonstrated in '[the_solution_spec](spec/the_solution_spec.rb)', but in a nutshell you can create 
 "duck" classes by inheriting from DuckPond::Duck. This file should be commented
-extensively as it describes the contract the duck represents. 
+extensively as it describes the contract the duck represents. The "quacks_like" method
+can be used to specify methods as symbols. 
 
     class MyDuck < DuckPond::Duck
-      quacks_like :length
+      quacks_like :length  #indicates "length" as a mehtod this duck has
+      quacks_like :to_s
     end
 
 Once you've declared a duck, you can use "binoculars" to see if objects quack like
@@ -68,7 +70,28 @@ Ducks can be combined into composite "super ducks" - ducks which are made up of 
       quacks_like MyOtherDuck
     end
 
-the quacks_like method has been aliased to looks_like too - you can say something looks_like or quacks_like any item, whichever you prefer (in case you didn't want "quack" methods in your ever so serious project!).
+the "quacks_like" methods have been aliased to "looks_like" too - you can say something "looks_like" or "quacks_like" any item, 
+whichever you prefer (in case you didn't want "quack" methods in your ever so serious project!). A *serious duck* might look like this:
+
+    class IEmailable < DuckPond::Duck
+      #send: should send the results of :message via email to :to
+      looks_like :send
+
+      #to: Should be an email address to which this will be sent
+      looks_like :to
+
+      #message: The message to send
+      looks_like :message
+    end
+
+And then be implemented in a method like this:
+
+    class Emailer
+      def send(email)
+        DuckPond::Binoculars.confirm!(email, IEmailable)
+        email.send
+      end
+    end
 
 
 ## Contributing
