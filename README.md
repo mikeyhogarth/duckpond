@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/duckpond.svg)](http://badge.fury.io/rb/duckpond)
+
 # Duckpond
 
 Explicit duck typing for ruby.
