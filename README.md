@@ -13,13 +13,13 @@ Duck Typing can make code confusing and unreadable, particularly
 when multiple developers are working on the same project or when 
 projects are inherited by new developers. 
 
-The spec folder has two files that go through the purpose of this gem
-in spec form. This would be a good place to start, although there is a crash 
+The docs folder has two files that go through the purpose of this gem. 
+This would be a good place to start, although there is a crash 
 course below.
 
-* [the_problem_spec](spec/the_problem_spec.rb) - This outlines the problems with duck typing.
+* [the_problem](docs/the_problem.txt) - This outlines the problems with duck typing.
 
-* [the_solution_spec](spec/the_solution_spec.rb) - This outlines how duckpond gets around these problems.
+* [the_solution](docs/the_solution.txt) - This outlines how duckpond gets around these problems.
 
 
 ## Installation
@@ -39,7 +39,7 @@ Or install it yourself as:
 
 ## Usage
 
-Usage is demonstrated in '[the_solution_spec](spec/the_solution_spec.rb)', but in a nutshell you can create 
+Usage is demonstrated in '[the_solution](docs/the_solution.txt)', but in a nutshell you can create 
 "contract" classes by inheriting from DuckPond::Contract. This file should be commented
 extensively as it describes the contract the duck represents. The "has_method" method
 can be used to specify methods as symbols. 
