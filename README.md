@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/duckpond.svg)](http://badge.fury.io/rb/duckpond)
+[![Build Status](https://travis-ci.org/mikeyhogarth/duckpond.svg?branch=master)](https://travis-ci.org/mikeyhogarth/duckpond)
 
 # Duckpond
 
