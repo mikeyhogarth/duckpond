@@ -98,6 +98,12 @@ And then be implemented in a method like this:
     end
 
 
+
+## Compatibility
+
+Works in 1.9.x onwards
+
+
 ## Contributing
 
 1. Fork it
