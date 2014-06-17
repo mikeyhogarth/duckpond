@@ -38,54 +38,52 @@ Or install it yourself as:
 ## Usage
 
 Usage is demonstrated in '[the_solution_spec](spec/the_solution_spec.rb)', but in a nutshell you can create 
-"duck" classes by inheriting from DuckPond::Duck. This file should be commented
-extensively as it describes the contract the duck represents. The "quacks_like" method
+"contract" classes by inheriting from DuckPond::Contract. This file should be commented
+extensively as it describes the contract the duck represents. The "has_method" method
 can be used to specify methods as symbols. 
 
-    class MyDuck < DuckPond::Duck
-      quacks_like :length  
-      quacks_like :to_s
+    class MyContract < DuckPond::Contract
+      has_method :length  
+      has_method :to_s
     end
 
-Once you've declared a duck, you can use "binoculars" to see if objects quack like
+Once you've declared a contract, you can use "binoculars" to see if objects quack like
 that duck:
 
     obj = "Hello World"
     sighting = DuckPond::Binoculars.identify(obj)
-    sighting.quacks_like? MyDuck
+    sighting.quacks_like? MyContract
     => true
 
 There are other syntaxes:
 
     #This syntax gets all the comparison done in one line
-    DuckPond::Binoculars.confirm(obj, MyDuck)
+    DuckPond::Binoculars.confirm(obj, MyContract)
     => true
 
     #This syntax does the same thing, but raises an excaption instead of returning false 
-    DuckPond::Binoculars.confirm!(obj, MyDuck)
+    DuckPond::Binoculars.confirm!(obj, MyContract)
 
 
-Ducks can be combined into composite "super ducks" - ducks which are made up of various other ducks:
+Ducks can be combined into composite "super contracts" - contracts which are made up of various other contracts. This ties in with the reccomendation of preferring composition over inheritance:
 
-    class MySuperDuck < DuckPond::Duck
-      quacks_like MyDuck
-      quacks_like MyOtherDuck
+    class MyCompositeConrtact < DuckPond::Contract
+      include_methods_from MyContract
+      include_methods_from MyOtherContract
     end
 
-the "quacks_like" methods have been aliased to "looks_like" too - you can say something "looks_like" or "quacks_like" any item, 
-whichever you prefer. 
 
 A *serious duck* might look like this:
 
-    class IEmailable < DuckPond::Duck
+    class IEmailable < DuckPond::Contract
       #send: should send the results of :message via email to :to
-      looks_like :send
+      has_method :send
 
       #to: Should be an email address to which this will be sent
-      looks_like :to
+      has_method :to
 
       #message: The message to send
-      looks_like :message
+      has_method :message
     end
 
 And then be implemented in a method like this:

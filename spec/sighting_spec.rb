@@ -13,15 +13,15 @@ module DuckPond
 
     describe '#quacks_like?' do
 
-      class MyChunkyBaconDuck < Duck
-        quacks_like :chunky_bacon
+      class MyChunkyBaconContract < Contract
+        has_method :chunky_bacon
       end
 
       context 'when the sighted object quacks like the duck' do
         it 'returns true' do
           obj = OpenStruct.new(:chunky_bacon => :mmm)
           sighting = Sighting.new(obj)
-          expect(sighting.quacks_like? MyChunkyBaconDuck).to be true
+          expect(sighting.quacks_like? MyChunkyBaconContract).to be true
         end
       end
 
@@ -29,7 +29,7 @@ module DuckPond
         it 'returns false' do
           obj = OpenStruct.new(:vegan_fallafal => :yuck)
           sighting = Sighting.new(obj)
-          expect(sighting.quacks_like? MyChunkyBaconDuck).to be false
+          expect(sighting.quacks_like? MyChunkyBaconContract).to be false
         end
       end
 

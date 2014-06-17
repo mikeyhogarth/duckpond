@@ -8,7 +8,7 @@
 #
 module DuckPond
   class Binoculars
-    class WrongDuckError < TypeError;end
+    class ContractInfringementError < TypeError;end
 
     # The sighted object
     attr_reader :sighting
@@ -48,7 +48,7 @@ module DuckPond
     # does not quack like the duck.
     #
     def self.confirm!(obj, duck)
-      raise WrongDuckError unless confirm(obj, duck)
+      raise ContractInfringementError unless confirm(obj, duck)
     end
 
   end

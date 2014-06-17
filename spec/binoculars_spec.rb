@@ -24,27 +24,27 @@ module DuckPond
 
     describe '.confirm' do
 
-      class StringDuck < Duck
-        quacks_like :to_s
-        quacks_like :length
+      class StringContract < Contract
+        has_method :to_s
+        has_method :length
       end
 
       context 'when given a ruby object and a duck class that it quacks like' do
         it 'returns true' do
-          expect(DuckPond::Binoculars.confirm("Hello World", StringDuck)).to be true
+          expect(DuckPond::Binoculars.confirm("Hello World", StringContract)).to be true
         end
       end
 
       context 'when given a ruby object and a duck class that it doesnt quacks like' do
         it 'returns false' do
-          expect(DuckPond::Binoculars.confirm(Object.new, StringDuck)).to be false
+          expect(DuckPond::Binoculars.confirm(Object.new, StringContract)).to be false
         end
       end
     end
 
     describe '.confirm!' do
       it 'behaves like the un-banged version, but raises an error if it doesnt quack right' do
-        expect {DuckPond::Binoculars.confirm!(Object.new, StringDuck)}.to raise_error
+        expect {DuckPond::Binoculars.confirm!(Object.new, StringContract)}.to raise_error
       end
     end
 

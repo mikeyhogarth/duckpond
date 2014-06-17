@@ -1,5 +1,5 @@
 require 'duckpond/version'
-require 'duckpond/duck'
+require 'duckpond/contract'
 require 'duckpond/binoculars'
 require 'duckpond/sighting'
 

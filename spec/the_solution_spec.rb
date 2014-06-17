@@ -9,9 +9,9 @@ module DuckPond
         # First, declare a duck.
         #
 
-        class ObjDuck < DuckPond::Duck
-          quacks_like :to_s
-          quacks_like :length
+        class ObjContract < DuckPond::Contract
+          has_method :to_s
+          has_method :length
         end
 
         #
@@ -36,7 +36,7 @@ module DuckPond
         # And now you can compare your sightings with your ducks!
         #
 
-        result = sighting.quacks_like?(ObjDuck)
+        result = sighting.quacks_like?(ObjContract)
         expect(result).to be true
 
         #
@@ -45,7 +45,7 @@ module DuckPond
 
         binoculars = DuckPond::Binoculars.new
         sighting = binoculars.identify(obj)
-        raise TypeError unless sighting.quacks_like?(ObjDuck)
+        raise TypeError unless sighting.quacks_like?(ObjContract)
        
         #
         # But because this trio of lines are so common, a
@@ -53,14 +53,14 @@ module DuckPond
         # once:
         #
 
-        result = DuckPond::Binoculars.confirm(obj, ObjDuck)
+        result = DuckPond::Binoculars.confirm(obj, ObjContract)
         expect(result).to be true
 
         #
         # The "bang" version will raise an error if the object isn't the duck.
         #
         
-        expect { DuckPond::Binoculars.confirm!(Object.new, ObjDuck) }.to raise_error TypeError
+        expect { DuckPond::Binoculars.confirm!(Object.new, ObjContract) }.to raise_error TypeError
 
 
         #
@@ -69,7 +69,7 @@ module DuckPond
         
         class Foo
           def self.bar(obj)
-            DuckPond::Binoculars.confirm!(obj,ObjDuck) 
+            DuckPond::Binoculars.confirm!(obj,ObjConrtact) 
 
             obj.foo!
             fooinator = Test::Fooinator.new
@@ -83,7 +83,7 @@ module DuckPond
         #
         # Final Tips: 
         #
-        # * Ducks should be commented liberally. They form the descripiton
+        # * Contracts should be commented liberally. They form the descripiton
         # of a contract just as interfaces would in strongly typed languages.
         # Developers will be prompted to consult the duck when they see a pair
         # of binoculars in your code, so make sure they find what they're looking

@@ -27,8 +27,8 @@ module DuckPond
     # by the duck's quacks.
     #
     def quacks_like?(duck)
-      duck.quacks.each do |quack|
-        return false unless @sighted_object.respond_to? quack
+      duck.clauses.each do |clause|
+        return false unless @sighted_object.respond_to? clause
       end
       true
     end
