@@ -5,7 +5,7 @@ require 'duckpond/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "duckpond"
-  spec.version       = Duckpond::VERSION
+  spec.version       = DuckPond::VERSION
   spec.authors       = ["Mikey Hogarth"]
   spec.email         = ["mikehogarth20@hotmail.com"]
   spec.description   = %q{Explicit duck-typing for ruby}

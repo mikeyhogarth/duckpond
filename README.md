@@ -13,10 +13,6 @@ Duck Typing can make code confusing and unreadable, particularly
 when multiple developers are working on the same project or when 
 projects are inherited by new developers. 
 
-The docs folder has two files that go through the purpose of this gem. 
-This would be a good place to start, although there is a crash 
-course below.
-
 * [the_problem](docs/the_problem.txt) - This outlines the problems with duck typing.
 
 * [the_solution](docs/the_solution.txt) - This outlines how duckpond gets around these problems.
@@ -39,35 +35,34 @@ Or install it yourself as:
 
 ## Usage
 
-Usage is demonstrated in '[the_solution](docs/the_solution.txt)', but in a nutshell you can create 
-"contract" classes by inheriting from DuckPond::Contract. This file should be commented
-extensively as it describes the contract the duck represents. The "has_method" method
-can be used to specify methods as symbols. 
+Usage is demonstrated in '[the_solution](docs/the_solution.txt)', but in a nutshell you 
+create "contract" classes by inheriting from DuckPond::Contract. These classes should 
+be commented extensively. 
+
+The "has_method" method is used to specify which methods the contract expects to see. The
+following contract describes classes which respond to #length and #to_s
 
     class MyContract < DuckPond::Contract
-      has_method :length  
+      has_method :length
       has_method :to_s
     end
 
-Once you've declared a contract, you can use "binoculars" to see if objects quack like
-that duck:
+Once you've declared a contract, you can compare objects to it to see if the contract is 
+fulfilled by the object:
 
-    obj = "Hello World"
-    sighting = DuckPond::Binoculars.identify(obj)
-    sighting.quacks_like? MyContract
-    => true
+  MyContract.fulfilled_by? "Hello"
+  => true
+  MyContract.fulfilled_by? 12
+  => false
 
-There are other syntaxes:
+There is also a "bang" version of the fulfilled_by method, that raises an error instead 
+of returning false.
 
-    #This syntax gets all the comparison done in one line
-    DuckPond::Binoculars.confirm(obj, MyContract)
-    => true
+  MyContract.fulfilled_by! 12
+  => RAISES ERROR!!
 
-    #This syntax does the same thing, but raises an excaption instead of returning false 
-    DuckPond::Binoculars.confirm!(obj, MyContract)
-
-
-Ducks can be combined into composite "super contracts" - contracts which are made up of various other contracts. This ties in with the reccomendation of preferring composition over inheritance:
+Contracts can be combined into composite "super contracts" - contracts which are made up of 
+various other contracts. This ties in with the reccomendation of preferring composition over inheritance:
 
     class MyCompositeConrtact < DuckPond::Contract
       include_methods_from MyContract
@@ -75,7 +70,7 @@ Ducks can be combined into composite "super contracts" - contracts which are mad
     end
 
 
-A *serious duck* might look like this:
+In the real world, a contract might look like this:
 
     class IEmailable < DuckPond::Contract
       #send: should send the results of :message via email to :to
@@ -92,16 +87,20 @@ And then be implemented in a method like this:
 
     class Emailer
       def send(email)
-        DuckPond::Binoculars.confirm!(email, IEmailable)
+        IEmailable.fulfilled_by! email
         email.send
       end
     end
 
 
-
 ## Compatibility
 
-Works in 1.9.x onwards
+CI tests exist for the following rubies, so they definately work and there's no reason all 1.9.x rubies wouldnt' work either:
+
+  - 1.9.3
+  - 2.0.0
+  - 2.1.1
+  - jruby-19mode 
 
 
 ## Contributing

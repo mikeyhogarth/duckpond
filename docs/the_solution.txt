@@ -1,5 +1,5 @@
 #
-# First, declare a duck.
+# First, declare a contract.
 #
 
 class ObjContract < DuckPond::Contract
@@ -8,61 +8,26 @@ class ObjContract < DuckPond::Contract
 end
 
 #
-# Grab a pair of binoculars...
+# Then use it to check stuff!
 #
 
-binoculars = DuckPond::Binoculars.new
-
-# 
-# Now, lets say you have an object...
-#
-
-obj = "Hello World"
-
-#
-# You can "spot" it with your binoculars...
-#
-
-sighting = binoculars.identify(obj)
-
-#
-# And now you can compare your sightings with your ducks!
-#
-
-result = sighting.quacks_like?(ObjContract)
-expect(result).to be true
-
-#
-# You could check all of this within a method:
-#
-
-binoculars = DuckPond::Binoculars.new
-sighting = binoculars.identify(obj)
-raise TypeError unless sighting.quacks_like?(ObjContract)
-
-#
-# But because this trio of lines are so common, a
-# convinience method exists to perform all three at
-# once:
-#
-
-result = DuckPond::Binoculars.confirm(obj, ObjContract)
-expect(result).to be true
+ObjContract.fulfilled_by? "Hello"
+=> true (or false if not fulfilled)
 
 #
 # The "bang" version will raise an error if the object isn't the duck.
 #
 
-expect { DuckPond::Binoculars.confirm!(Object.new, ObjContract) }.to raise_error TypeError
-
+ObjContract.fulfilled_by! "Hello"
+=> true (or error if not fulfilled)
 
 #
-# So, going back to that example from the problem_spec
+# So, going back to that example from the problem doc...
 #
 
 class Foo
   def self.bar(obj)
-    DuckPond::Binoculars.confirm!(obj,ObjConrtact) 
+    ObjContract.fulfilled_by! obj
 
     obj.foo!
     fooinator = Test::Fooinator.new

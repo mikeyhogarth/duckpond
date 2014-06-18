@@ -1,7 +1,6 @@
 require 'duckpond/version'
 require 'duckpond/contract'
-require 'duckpond/binoculars'
-require 'duckpond/sighting'
+require 'duckpond/inspection'
 
-module Duckpond
+module DuckPond
 end

@@ -7,6 +7,8 @@
 #
 module DuckPond
   class Contract
+    class ContractInfringementError < TypeError;end
+
     class << self
 
       def clauses
@@ -22,7 +24,6 @@ module DuckPond
         clauses << method_name
       end
 
-
       #
       # include_clauses_from
       #
@@ -34,16 +35,21 @@ module DuckPond
         end
       end
 
-      
       #
-      # quacks_like?
+      # fulfilled_by?
       #
-      # The main quack checking method for a duck
-      #
-      def quacks_like?(method)
-        clauses.include?(method)
+      def fulfilled_by?(obj)
+        inspection = DuckPond::Inspection.new(obj)
+        return false unless inspection.fulfilled_by? self
+        true
       end
 
+      #
+      # fulfilled_by!
+      #
+      def fulfilled_by!(obj)
+        raise ContractInfringementError unless fulfilled_by?(obj)
+      end
     end
   end
 end
