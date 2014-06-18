@@ -50,16 +50,16 @@ following contract describes classes which respond to #length and #to_s
 Once you've declared a contract, you can compare objects to it to see if the contract is 
 fulfilled by the object:
 
-  MyContract.fulfilled_by? "Hello"
-  => true
-  MyContract.fulfilled_by? 12
-  => false
+    MyContract.fulfilled_by? "Hello"
+    => true
+    MyContract.fulfilled_by? 12
+    => false
 
 There is also a "bang" version of the fulfilled_by method, that raises an error instead 
 of returning false.
 
-  MyContract.fulfilled_by! 12
-  => RAISES ERROR!!
+    MyContract.fulfilled_by! 12
+    => RAISES ERROR!!
 
 Contracts can be combined into composite "super contracts" - contracts which are made up of 
 various other contracts. This ties in with the reccomendation of preferring composition over inheritance:
