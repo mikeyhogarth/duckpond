@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    duckpond (1.0.2)
+    duckpond (1.1.0)
 
 GEM
   remote: https://rubygems.org/
