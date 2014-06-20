@@ -11,24 +11,19 @@ module DuckPond
     end
 
     describe '#fulfilled_by?' do
-
-      class MyChunkyBaconContract < Contract
-        has_method :chunky_bacon
-      end
-
       context 'when the sighted object quacks like the duck' do
         it 'returns true' do
-          obj = OpenStruct.new(:chunky_bacon => :mmm)
+          obj = OpenStruct.new(:length => 2)
           inspection = Inspection.new(obj)
-          expect(inspection.fulfilled_by? MyChunkyBaconContract).to be true
+          expect(inspection.fulfilled_by? LengthContract).to be true
         end
       end
 
       context 'when the sighted object does not quack like the duck' do
         it 'returns false' do
-          obj = OpenStruct.new(:vegan_fallafal => :yuck)
+          obj = OpenStruct.new(:size => 2)
           inspection = Inspection.new(obj)
-          expect(inspection.fulfilled_by? MyChunkyBaconContract).to be false
+          expect(inspection.fulfilled_by? LengthContract).to be false
         end
       end
 

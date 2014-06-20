@@ -12,10 +12,10 @@ module DuckPond
       end
     end
 
-    class LengthContract < DuckPond::Contract
-      has_method :length
-    end
- 
+
+    #
+    # see spec/classes/length_contract.rb
+    #
     describe 'fulfilled_by?' do
       context 'when the object is fulfilled by the contract' do
         it 'returns true' do
@@ -28,7 +28,6 @@ module DuckPond
         end
       end
     end
-
     describe 'fulfilled_by!' do
       context 'when the object is fulfilled by the contract' do
         it 'returns true' do
@@ -41,35 +40,24 @@ module DuckPond
         end
       end
     end
-  end
 
-  class MyContract < Contract
-    has_method :foo
-    has_method :bar
-  end
-
-  describe MyContract do
-    context '.clauses' do
-      it 'quacks like foo and bar' do
-        clauses = MyContract.clauses
-        expect(clauses.length).to eq 2
-        expect(clauses).to include :foo
-        expect(clauses).to include :bar
+    describe '.clauses' do
+      it 'returns the clauses for this contract' do
+        clauses = LengthContract.clauses
+        expect(clauses.length).to eq 1
+        expect(clauses).to include :length
       end
     end
   end
 
-  class MySimilarContract < Contract
-    include_clauses_from MyContract
-    has_method :chunky_bacon
-  end
-
-  describe MySimilarContract do
+  #
+  # See spec/classes/composite_contract.rb
+  #
+  describe CompositeContract do
     it 'retains its parents quackings' do
-      clauses = MySimilarContract.clauses
-      expect(clauses.length).to eq 3 
-      expect(clauses).to include :foo
-      expect(clauses).to include :bar
+      clauses = CompositeContract.clauses
+      expect(clauses.length).to eq 2 
+      expect(clauses).to include :length
       expect(clauses).to include :chunky_bacon
     end
   end
