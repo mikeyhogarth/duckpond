@@ -11,14 +11,14 @@ end
 # Then use it to check stuff!
 #
 
-ObjContract.fulfilled_by? "Hello"
+ObjContract.fulfills? "Hello"
 => true (or false if not fulfilled)
 
 #
 # The "bang" version will raise an error if the object isn't the duck.
 #
 
-ObjContract.fulfilled_by! "Hello"
+ObjContract.fulfills! "Hello"
 => true (or error if not fulfilled)
 
 #
@@ -27,7 +27,7 @@ ObjContract.fulfilled_by! "Hello"
 
 class Foo
   def self.bar(obj)
-    ObjContract.fulfilled_by! obj
+    ObjContract.fulfills! obj
 
     obj.foo!
     fooinator = Test::Fooinator.new

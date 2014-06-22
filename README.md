@@ -50,15 +50,15 @@ following contract describes classes which respond to #length and #to_s
 Once you've declared a contract, you can compare objects to it to see if the contract is 
 fulfilled by the object:
 
-    MyContract.fulfilled_by? "Hello"
+    MyContract.fulfills? "Hello"
     => true
-    MyContract.fulfilled_by? 12
+    MyContract.fulfills? 12
     => false
 
-There is also a "bang" version of the fulfilled_by method, that raises an error instead 
+There is also a "bang" version of the #fulfills method, that raises an error instead 
 of returning false.
 
-    MyContract.fulfilled_by! 12
+    MyContract.fulfills! 12
     => RAISES ERROR!!
 
 Contracts can be combined into composite "super contracts" - contracts which are made up of 
@@ -87,7 +87,7 @@ And then be implemented in a method like this:
 
     class Emailer
       def send(email)
-        IEmailable.fulfilled_by! email
+        IEmailable.fulfills! email
         email.send
       end
     end

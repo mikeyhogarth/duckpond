@@ -11,7 +11,7 @@ module DuckPond
     end
 
     describe '#fulfilled_by?' do
-      context 'when the sighted object quacks like the duck' do
+      context 'when the inspected object is fulfilled by the contract' do
         it 'returns true' do
           obj = OpenStruct.new(:length => 2)
           inspection = Inspection.new(obj)
@@ -19,7 +19,7 @@ module DuckPond
         end
       end
 
-      context 'when the sighted object does not quack like the duck' do
+      context 'when the inspected object is not fulfilled by the contract' do
         it 'returns false' do
           obj = OpenStruct.new(:size => 2)
           inspection = Inspection.new(obj)

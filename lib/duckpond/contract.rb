@@ -36,19 +36,19 @@ module DuckPond
       end
 
       #
-      # fulfilled_by?
+      # fulfills?
       #
-      def fulfilled_by?(obj)
+      def fulfills?(obj)
         inspection = DuckPond::Inspection.new(obj)
         return false unless inspection.fulfilled_by? self
         true
       end
 
       #
-      # fulfilled_by!
+      # fulfills!
       #
-      def fulfilled_by!(obj)
-        raise ContractInfringementError unless fulfilled_by?(obj)
+      def fulfills!(obj)
+        raise ContractInfringementError unless fulfills?(obj)
       end
     end
   end
