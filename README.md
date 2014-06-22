@@ -65,8 +65,8 @@ Contracts can be combined into composite "super contracts" - contracts which are
 various other contracts. This ties in with the reccomendation of preferring composition over inheritance:
 
     class MyCompositeConrtact < DuckPond::Contract
-      include_methods_from MyContract
-      include_methods_from MyOtherContract
+      include_clauses_from MyContract
+      include_clauses_from MyOtherContract
     end
 
 
