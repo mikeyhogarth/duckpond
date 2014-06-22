@@ -11,8 +11,25 @@ module DuckPond
 
     class << self
 
+      #
+      # clauses
+      #
+      # Gets this contract's list of clauses or returns
+      # an empty array if uninitialized.
+      #
       def clauses
         @clauses ||= []
+      end
+
+      #
+      # each_clause
+      #
+      # Iterator for clauses
+      #
+      def each_clause
+        0.upto(clauses.size-1) do |i|
+          yield @clauses[i]
+        end
       end
 
       #
@@ -30,13 +47,16 @@ module DuckPond
       # Facilitates composition of multiple contracts
       #
       def include_clauses_from(other_contract)
-        other_contract.clauses.each do |other_contracts_quacking|
-          has_method other_contracts_quacking
+        other_contract.each_clause do |other_clause|
+          has_method other_clause
         end
       end
 
       #
       # fulfills?
+      #
+      # Returns true if this contract fulfills the passed-in object,
+      # otherwise false.
       #
       def fulfills?(obj)
         inspection = DuckPond::Inspection.new(obj)
@@ -47,8 +67,12 @@ module DuckPond
       #
       # fulfills!
       #
+      # Raises a ContractInfringementError unless this contract fulfills
+      # the passed in object, otherwise returns true.
+      #
       def fulfills!(obj)
         raise ContractInfringementError unless fulfills?(obj)
+        true
       end
     end
   end

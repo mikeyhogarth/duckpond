@@ -1,8 +1,8 @@
 #
 # DuckPond::Inspection
 #
-# The duckpond analysis class is essentially just a wrapper for the inspected
-# object, used here to avoid un-nessecary monkey patching.
+# The duckpond inspection class is essentially just a wrapper for an inspected
+# object (the subject).
 #
 module DuckPond
   class Inspection
@@ -27,7 +27,7 @@ module DuckPond
     # by the contract's clauses.
     #
     def fulfilled_by?(contract)
-      contract.clauses.each do |clause|
+      contract.each_clause do |clause|
         return false unless @subject.respond_to? clause
       end
       true
