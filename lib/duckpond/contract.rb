@@ -37,8 +37,8 @@ module DuckPond
       #
       # Adds a method expectation to the contract
       #
-      def has_method(method_name)
-        clauses << MethodClause.new(method_name)
+      def has_method(method_name, opts = {})
+        clauses << MethodClause.new(method_name, opts)
       end
 
       #
