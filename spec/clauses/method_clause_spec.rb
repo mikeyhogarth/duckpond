@@ -9,30 +9,18 @@ module DuckPond
     end
 
     describe 'Constructor' do
-      context 'when passed a method name' do
-        it 'constructs a clause with that method name' do
-          expect(MethodClause.new(:foo).method_name).to eq :foo
-        end
-      end
-      context 'when passed a method name and some options' do
-        it 'constructs a clause with that method name and those options' do
-          clause = MethodClause.new(:foo, :my => :options)
+      context 'when constructed with a method name option' do
+        it 'adds that method name as an attribute' do
+          clause = MethodClause.new(:method_name => :foo)
           expect(clause.method_name).to eq :foo
-          expect(clause.options[:my]).to eq :options
         end
       end
     end
 
     describe 'Instance Methods' do
-      
-      describe '#method_name' do
-        it 'returns the method name the clause was constructed with' do
-          expect(MethodClause.new(:foo).method_name).to eq :foo
-        end
-      end
-
+     
       describe '#satisfied_by?' do
-        let(:clause) { MethodClause.new(:length) }
+        let(:clause) { MethodClause.new(:method_name => :length) }
 
         context 'when the subject responds to the clauses method' do 
           it 'returns true' do

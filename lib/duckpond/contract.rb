@@ -33,12 +33,22 @@ module DuckPond
       end
 
       #
+      # has_clause
+      #
+      # add a clause to the contract's list of clauses
+      #
+      def has_clause(clause_klass, opts = {})
+        clauses << clause_klass.new(opts)
+      end
+
+
+      #
       # has_method
       #
-      # Adds a method expectation to the contract
+      # Adds a method clause to the contract
       #
       def has_method(method_name, opts = {})
-        clauses << MethodClause.new(method_name, opts)
+        has_clause MethodClause, opts.merge(:method_name => method_name)
       end
 
       #

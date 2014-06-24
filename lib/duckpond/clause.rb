@@ -6,13 +6,13 @@
 module DuckPond
   class Clause
 
+    attr_reader :options
+
     #
-    # options
+    # initialize
     #
-    # A hash of options
-    #
-    def options
-      @options
+    def initialize(opts = {})
+      @options = opts
     end
 
   end
