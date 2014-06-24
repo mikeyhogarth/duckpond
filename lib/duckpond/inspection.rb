@@ -28,7 +28,7 @@ module DuckPond
     #
     def fulfilled_by?(contract)
       contract.each_clause do |clause|
-        return false unless @subject.respond_to? clause
+        return false unless clause.satisfied_by?(@subject)
       end
       true
     end

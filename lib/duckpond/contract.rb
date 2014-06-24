@@ -38,7 +38,7 @@ module DuckPond
       # Adds a method expectation to the contract
       #
       def has_method(method_name)
-        clauses << method_name
+        clauses << MethodClause.new(method_name)
       end
 
       #
@@ -48,7 +48,7 @@ module DuckPond
       #
       def include_clauses_from(other_contract)
         other_contract.each_clause do |other_clause|
-          has_method other_clause
+          has_method other_clause.method_name
         end
       end
 
