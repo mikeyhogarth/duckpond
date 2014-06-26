@@ -11,9 +11,9 @@ module DuckPond
     #
     # initialize
     #
-    def initialize(opts = {})
+    def initialize(opts={}, block)
       @options = opts
+      @options[:block] = block
     end
-
   end
 end

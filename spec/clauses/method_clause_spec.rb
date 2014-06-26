@@ -11,7 +11,7 @@ module DuckPond
     describe 'Constructor' do
       context 'when constructed with a method name option' do
         it 'adds that method name as an attribute' do
-          clause = MethodClause.new(:method_name => :foo)
+          clause = MethodClause.new({:method_name => :foo}, nil)
           expect(clause.method_name).to eq :foo
         end
       end
@@ -20,7 +20,7 @@ module DuckPond
     describe 'Instance Methods' do
      
       describe '#satisfied_by?' do
-        let(:clause) { MethodClause.new(:method_name => :length) }
+        let(:clause) { MethodClause.new({:method_name => :length}, nil) }
 
         context 'when the subject responds to the clauses method' do 
           it 'returns true' do

@@ -21,21 +21,26 @@ module DuckPond
       # Check the method actually exists.
       return false unless subject.respond_to? method_name
 
-      # If required, check the response from the method was what the user expected.
-      return false unless _responds_with?(subject, method_name, @options[:responds_with], @options[:given_args])
+      # Unless a block was given, or a response is required, we're done!
+      return true unless @options[:block] || @options[:responds_with]
 
+      # If we get this far, we need to tap into the result of the method
+      # call, as the user is interrogating it somehow.
+      response_when_called(subject, method_name, @options[:given_args])
+        .tap do |response_when_called|
+        if @options[:block]
+          return false unless @options[:block].call(response_when_called)
+        end
+        if @options[:responds_with]
+          return false unless response_when_called == @options[:responds_with]
+        end
+      end
       true
     end
 
     private 
-    #
-    # _responds_with?
-    #
-    # if a method response expectation was passed in, this just calls the method (with the arguments
-    # if given) and does an == compare with the subject.
-    #
-    def _responds_with?(subject, method, expected_result, args = [])
-      return expected_result ? subject.send(method_name, *args) == expected_result : true
+    def response_when_called(subject, method, args = [])
+      subject.send(method_name, *args)
     end
 
   end

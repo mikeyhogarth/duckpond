@@ -1,4 +1,4 @@
-class SpecificLenghtContract < DuckPond::Contract
+class SpecificLengthContract < DuckPond::Contract
 
   has_method :length, responds_with: 5
 

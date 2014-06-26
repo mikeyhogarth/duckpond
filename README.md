@@ -86,6 +86,20 @@ five characters long (such as the word "Hello"):
       has_method :length, responds_with: 5
     end
 
+Finally, if you really want to get down and dirty with interrogating method results, you can use a block thusly (the result of calling the method will be yielded to the block):
+
+    class MyBlockContract < DuckPond::Contract
+      has_method :length do |method_result|
+        method_result == 5
+      end
+    end
+
+    class MyOtherBlockContract < DuckPond::Contract
+      has_method :include?, given_args: "Hell" do |method_result|
+        method_result == true
+      end
+    end
+
 Note: The method will only be *called* if you use the :reponds_with option. Otherwise, it just tests for the method's existence.
 
 In the real world, a contract might look like this:
