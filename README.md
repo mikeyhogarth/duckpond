@@ -69,6 +69,24 @@ various other contracts. This ties in with the reccomendation of preferring comp
       include_clauses_from MyOtherContract
     end
 
+Another feature of duckpond is the ability to specify what your expected result from a contract should be. For example,
+the following contract expects a subject to have a method called "even" and for that method, when called, to return a 
+true value:
+
+    class MyEvenContract < DuckPond::Contract
+      has_method :even?, responds_with: true
+    end
+
+If the method needs args, you can specify those too. This next contract will pass the string "Hell" to the #include? method,
+and expect the value to be true. This contract will therefore be satisfied by strings containing the word "Hell" that are 
+five characters long (such as the word "Hello"):
+
+    class MyHellContract < DuckPond::Contract
+      has_method :include?, responds_with: true, given_args: "Hell"
+      has_method :length, responds_with: 5
+    end
+
+Note: The method will only be *called* if you use the :reponds_with option. Otherwise, it just tests for the method's existence.
 
 In the real world, a contract might look like this:
 

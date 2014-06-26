@@ -51,6 +51,17 @@ module DuckPond
   end
 
   #
+  # see spec/classes/specific_length_contract.rb
+  #
+  describe SpecificLenghtContract do
+    it 'checks a methods response is correct' do
+      expect(SpecificLenghtContract.fulfills?("Hello")).to eq true
+      expect(SpecificLenghtContract.fulfills?("Yello")).to eq false
+      expect(SpecificLenghtContract.fulfills?("Goodbye")).to eq false
+    end
+  end
+
+  #
   # See spec/classes/composite_contract.rb
   #
   describe CompositeContract do
