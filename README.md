@@ -35,7 +35,7 @@ Or install it yourself as:
 
 ## Usage
 
-There is now a [screencast](https://www.youtube.com/watch?v=NlxGbeubC78) demonstrating the duckpond gem! 
+There is now a [screencast](https://www.youtube.com/watch?v=XTFigHzAfsk&feature=youtu.be) demonstrating the duckpond gem! 
 
 Usage is demonstrated in '[the_solution](docs/the_solution.txt)', but in a nutshell you 
 create "contract" classes by inheriting from DuckPond::Contract. These classes should 
