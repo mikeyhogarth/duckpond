@@ -1,3 +1,6 @@
+require 'duckpond/contract/convinience_methods'
+require 'duckpond/contract/contract_infringement_error'
+
 # 
 # DuckPond::Contract
 #
@@ -7,7 +10,7 @@
 #
 module DuckPond
   class Contract
-    class ContractInfringementError < TypeError;end
+    extend DuckPond::Contract::ConvinienceMethods
 
     class << self
 
@@ -41,20 +44,6 @@ module DuckPond
         clauses << clause_klass.new(opts, block)
       end
 
-
-      #
-      # has_method
-      #
-      # Adds a method clause to the contract
-      #
-      def has_method(method_name, opts = {})
-        if block_given?
-          has_clause(MethodClause, opts.merge(:method_name => method_name), &Proc.new)
-        else
-          has_clause(MethodClause, opts.merge(:method_name => method_name))
-        end
-      end
-
       #
       # include_clauses_from
       #
@@ -85,7 +74,7 @@ module DuckPond
       # the passed in object, otherwise returns true.
       #
       def fulfills!(obj)
-        raise ContractInfringementError unless fulfills?(obj)
+        raise ContractInfringementError.new(self, obj) unless fulfills?(obj)
         true
       end
     end

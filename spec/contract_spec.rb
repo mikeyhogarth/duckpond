@@ -36,7 +36,7 @@ module DuckPond
       end
       context 'when the object is not fulfilled by the contract' do
         it 'returns false' do
-          expect{LengthContract.fulfills!(2)}.to raise_error
+         expect{LengthContract.fulfills!(2)}.to raise_error DuckPond::Contract::ContractInfringementError
         end
       end
     end
