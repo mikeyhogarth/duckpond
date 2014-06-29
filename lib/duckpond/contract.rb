@@ -62,7 +62,7 @@ module DuckPond
       #
       def include_clauses_from(other_contract)
         other_contract.each_clause do |other_clause|
-          has_method other_clause.method_name
+          has_clause other_clause.class, other_clause.options, &other_clause.block
         end
       end
 

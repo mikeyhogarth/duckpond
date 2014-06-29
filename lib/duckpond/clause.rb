@@ -6,14 +6,15 @@
 module DuckPond
   class Clause
 
-    attr_reader :options
+    attr_reader :options, :block
 
     #
     # initialize
     #
     def initialize(opts={}, block)
       @options = opts
-      @options[:block] = block
+      @block = block
     end
+
   end
 end

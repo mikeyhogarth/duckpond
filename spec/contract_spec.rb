@@ -45,33 +45,8 @@ module DuckPond
       it 'returns the clauses for this contract' do
         clauses = LengthContract.clauses
         expect(clauses.length).to eq 1
-        expect(clauses.map(&:method_name)).to include :length
+        expect(clauses.first.options[:method_name]).to eq :length
       end
-    end
-  end
-
-  #
-  # see spec/classes/specific_length_contract.rb
-  #
-  describe SpecificLengthContract do
-    it 'checks a methods response is correct' do
-      expect(SpecificLengthContract.fulfills?("Hello")).to eq true
-      expect(SpecificLengthContract.fulfills?("Yello")).to eq false
-      expect(SpecificLengthContract.fulfills?("Goodbye")).to eq false
-    end
-  end
-
-  describe SpecificLengthBehaviourContract do
-    it 'checks the given block against the subjects method repsonse' do
-      expect(SpecificLengthBehaviourContract.fulfills?('Hello')).to eq true
-      expect(SpecificLengthBehaviourContract.fulfills?('Goodbye')).to eq false
-    end
-  end
-
-  describe SpecificIncludeBehaviourContract do
-    it 'checks the given block against the subjects method response' do
-      expect(SpecificIncludeBehaviourContract.fulfills?('Hello')).to eq true
-      expect(SpecificLengthBehaviourContract.fulfills?('Goodbye')).to eq false  
     end
   end
 
@@ -82,8 +57,11 @@ module DuckPond
     it 'retains its parents quackings' do
       clauses = CompositeContract.clauses
       expect(clauses.length).to eq 2 
-      expect(clauses.map(&:method_name)).to include :length
-      expect(clauses.map(&:method_name)).to include :chunky_bacon
+      clauses.map {|c|c.options[:method_name]}.tap do |method_names|
+        expect(method_names).to include :length
+        expect(method_names).to include :chunky_bacon
+      end
     end
   end
+
 end
