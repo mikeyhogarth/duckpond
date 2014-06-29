@@ -1,3 +1,9 @@
+#
+# DuckPond::Lawyer
+#
+# The lawyer class is responsible for maintaining the sate of satisfaction
+# between a subject and its contract. Typically these are used in clauses.
+#
 module DuckPond
   class Lawyer
 
