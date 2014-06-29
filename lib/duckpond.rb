@@ -1,4 +1,5 @@
 require 'duckpond/version'
+require 'duckpond/lawyer'
 require 'duckpond/contract'
 require 'duckpond/inspection'
 

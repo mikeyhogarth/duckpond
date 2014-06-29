@@ -20,25 +20,21 @@ module DuckPond
     # A subject satisfies a method clause if it responds to that method.
     #
     def satisfied_by?(subject)
+      Lawyer.new do |lawyer|
+        lawyer.unsatisfied! unless subject.respond_to? @options[:method_name]
 
-      # Check the method actually exists.
-      return false unless subject.respond_to? @options[:method_name]
-
-      # Unless a block was given, or a response is required, we're done!
-      return true unless @block || @options[:responds_with]
-
-      # If we get this far, we need to tap into the result of the method
-      # call, as the user is interrogating it somehow.
-      response_when_called(subject, @options[:method_name], @options[:given_args])
-        .tap do |response_when_called|
-        if @block
-          return false unless @block.call(response_when_called)
+        if @block || @options[:responds_with]
+          response_when_called(subject, @options[:method_name], @options[:given_args])
+            .tap do |response_when_called|
+            if @block
+              lawyer.unsatisfied! unless @block.call(response_when_called)
+            end
+            if @options[:responds_with]
+              lawyer.unsatisfied! unless response_when_called == @options[:responds_with]
+            end
+          end
         end
-        if @options[:responds_with]
-          return false unless response_when_called == @options[:responds_with]
-        end
-      end
-      true
+      end.satisfied?
     end
 
     private 
