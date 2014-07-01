@@ -8,7 +8,7 @@ module DuckPond
   class Inspection
 
     # the wrapped object
-    attr_reader :subject
+    attr_reader :subject, :messages
 
     #
     # initialize
@@ -16,7 +16,9 @@ module DuckPond
     # Construct with any ruby object. 
     #
     def initialize(subject)
-      @subject = subject
+      @subject    = subject
+      @satisfied  = true
+      @messages   = []
     end
 
     # 
@@ -28,9 +30,18 @@ module DuckPond
     #
     def fulfilled_by?(contract)
       contract.each_clause do |clause|
-        return false unless clause.satisfied_by?(@subject)
+        clause.legal_assesment(@subject).tap do |lawyer|
+          unless lawyer.satisfied?
+            @satisfied = false
+            @messages << lawyer.messages
+          end
+        end
       end
-      true
+      @satisfied
+    end
+
+    def satisfied?
+      @satisfied
     end
   end
 end

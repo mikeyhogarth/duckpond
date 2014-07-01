@@ -24,12 +24,12 @@ module DuckPond
 
         context 'when the subject responds to the clauses method' do 
           it 'returns true' do
-            expect(clause.satisfied_by? 'Hello').to eq true
+            expect(clause.satisfied_by?('Hello')).to eq true
           end
         end
         context 'when the subject responds to the clauses method' do 
           it 'returns false' do
-            expect(clause.satisfied_by? 42).to eq false
+            expect(clause.satisfied_by?(42)).to eq false
           end
         end
       end

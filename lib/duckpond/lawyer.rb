@@ -17,6 +17,10 @@ module DuckPond
       @satisfied
     end
 
+    def messages
+      @messages
+    end
+
     def unsatisfied!(msg = nil)
       @satisfied = false
       @messages << msg if msg

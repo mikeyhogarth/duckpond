@@ -15,11 +15,9 @@ module DuckPond
   class MethodClause < Clause
 
     #
-    # satisfied_by?
+    # legal_assesment
     #
-    # A subject satisfies a method clause if it responds to that method.
-    #
-    def satisfied_by?(subject)
+    def legal_assesment(subject)
       Lawyer.new do |lawyer|
         lawyer.unsatisfied! unless subject.respond_to? method
 
@@ -33,7 +31,7 @@ module DuckPond
             end
           end
         end
-      end.satisfied?
+      end
     end
 
     private 
