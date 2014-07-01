@@ -19,15 +19,22 @@ module DuckPond
     #
     def legal_assesment(subject)
       Lawyer.new do |lawyer|
-        lawyer.unsatisfied! unless subject.respond_to? method
+        unless subject.respond_to? method
+          lawyer.unsatisfied! "Expected subject to respond to method '#{method}'"
+        end
 
         if @block || expected_response
           response_when_called(subject, method, args).tap do |response_when_called|
             if @block
-              lawyer.unsatisfied! unless @block.call(response_when_called)
+              unless @block.call(response_when_called)
+                lawyer.unsatisfied! "Block did not respond with 'true' for method #{method}"
+              end
             end
+            
             if expected_response
-              lawyer.unsatisfied! unless response_when_called == expected_response
+              unless response_when_called == expected_response
+                lawyer.unsatisfied! "Expected method #{method} to return #{expected_response} but got #{response_when_called}"  
+              end
             end
           end
         end

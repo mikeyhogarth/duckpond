@@ -62,9 +62,9 @@ module DuckPond
       # otherwise false.
       #
       def fulfills?(obj)
-        inspection = DuckPond::Inspection.new(obj)
-        return false unless inspection.fulfilled_by? self
-        true
+        DuckPond::Inspection.new(obj).tap do |inspection|
+          return inspection.fulfilled_by? self
+        end
       end
 
       #
@@ -74,9 +74,15 @@ module DuckPond
       # the passed in object, otherwise returns true.
       #
       def fulfills!(obj)
-        raise ContractInfringementError.new(self, obj) unless fulfills?(obj)
-        true
+        DuckPond::Inspection.new(obj).tap do |inspection|
+          unless inspection.fulfilled_by? self
+            raise ContractInfringementError.new(self, obj, inspection)
+          else
+            return true
+          end
+        end
       end
+
     end
   end
 end

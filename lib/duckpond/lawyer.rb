@@ -23,7 +23,7 @@ module DuckPond
 
     def unsatisfied!(msg = nil)
       @satisfied = false
-      @messages << msg if msg
+      @messages << msg unless msg.nil?
     end
   end
 

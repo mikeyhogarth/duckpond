@@ -58,10 +58,13 @@ fulfilled by the object:
     => false
 
 There is also a "bang" version of the #fulfills method, that raises an error instead 
-of returning false.
+of returning false. The error message details why it got raised.
 
-    MyContract.fulfills! 12
-    => RAISES ERROR!!
+    MyContract.fulfills! :foo 
+    => DuckPond::Contract::ContractInfringementError:
+       One or more clauses from MyContract were not fulfilled by :foo (Symbol) 
+       Expected subject to respond to method 'length'
+
 
 Contracts can be combined into composite "super contracts" - contracts which are made up of 
 various other contracts. This ties in with the reccomendation of preferring composition over inheritance:

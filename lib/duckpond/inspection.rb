@@ -8,7 +8,7 @@ module DuckPond
   class Inspection
 
     # the wrapped object
-    attr_reader :subject, :messages
+    attr_reader :subject
 
     #
     # initialize
@@ -19,6 +19,10 @@ module DuckPond
       @subject    = subject
       @satisfied  = true
       @messages   = []
+    end
+
+    def messages
+      @messages.flatten.uniq
     end
 
     # 
@@ -33,7 +37,7 @@ module DuckPond
         clause.legal_assesment(@subject).tap do |lawyer|
           unless lawyer.satisfied?
             @satisfied = false
-            @messages << lawyer.messages
+            @messages << lawyer.messages 
           end
         end
       end
