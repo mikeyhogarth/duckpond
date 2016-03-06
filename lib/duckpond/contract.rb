@@ -67,6 +67,8 @@ module DuckPond
         end
       end
 
+    alias_method :fulfilled_by?, :fulfills?
+
       #
       # fulfills!
       #
@@ -82,6 +84,8 @@ module DuckPond
           end
         end
       end
+
+      alias_method :fulfilled_by!, :fulfills!
 
     end
   end
