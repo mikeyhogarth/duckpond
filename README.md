@@ -132,11 +132,11 @@ And then be implemented in a method like this:
 
 ## Compatibility
 
-CI tests exist for the following rubies, so they definately work and there's no reason all 1.9.x rubies wouldnt' work either:
+CI tests exist for the following rubies, other versions are not supported but should still work;
 
-  - 1.9.3
-  - 2.0.0
-  - 2.1.1
+  - 2.3.0
+  - 2.2.4
+  - 2.1.8
   - jruby-19mode 
 
 
