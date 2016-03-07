@@ -11,14 +11,14 @@ end
 # Then use it to check stuff!
 #
 
-ObjContract.fulfills? "Hello"
+ObjContract.fulfilled_by? "Hello"
 => true (or false if not fulfilled)
 
 #
 # The "bang" version will raise an error if the object isn't the duck.
 #
 
-ObjContract.fulfills! "Hello"
+ObjContract.fulfilled_by! "Hello"
 => true (or error if not fulfilled)
 
 #
@@ -27,7 +27,7 @@ ObjContract.fulfills! "Hello"
 
 class Foo
   def self.bar(obj)
-    ObjContract.fulfills! obj
+    ObjContract.fulfilled_by! obj
 
     obj.foo!
     fooinator = Test::Fooinator.new
@@ -39,7 +39,7 @@ end
 #
 # Viola!
 #
-# Final Tips: 
+# Final Tips:
 #
 # * Contracts should be commented liberally. They form the descripiton
 # of a contract just as interfaces would in strongly typed languages.

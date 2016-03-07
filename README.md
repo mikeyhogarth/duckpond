@@ -9,9 +9,9 @@ Explicit duck typing for ruby.
 
 ## Introduction
 
-Duck Typing can make code confusing and unreadable, particularly 
-when multiple developers are working on the same project or when 
-projects are inherited by new developers. 
+Duck Typing can make code confusing and unreadable, particularly
+when multiple developers are working on the same project or when
+projects are inherited by new developers.
 
 * [the_problem](docs/the_problem.txt) - This outlines the problems with duck typing.
 
@@ -35,11 +35,11 @@ Or install it yourself as:
 
 ## Usage
 
-There is now a [screencast](https://www.youtube.com/watch?v=XTFigHzAfsk&feature=youtu.be) demonstrating the duckpond gem! 
+There is now a [screencast](https://www.youtube.com/watch?v=XTFigHzAfsk&feature=youtu.be) demonstrating the duckpond gem!
 
-Usage is demonstrated in '[the_solution](docs/the_solution.txt)', but in a nutshell you 
-create "contract" classes by inheriting from DuckPond::Contract. These classes should 
-be commented extensively. 
+Usage is demonstrated in '[the_solution](docs/the_solution.txt)', but in a nutshell you
+create "contract" classes by inheriting from DuckPond::Contract. These classes should
+be commented extensively.
 
 The "has_method" method is used to specify which methods the contract expects to see. The
 following contract describes classes which respond to #length and #to_s
@@ -49,24 +49,24 @@ following contract describes classes which respond to #length and #to_s
       has_method :to_s
     end
 
-Once you've declared a contract, you can compare objects to it to see if the contract is 
+Once you've declared a contract, you can compare objects to it to see if the contract is
 fulfilled by the object:
 
-    MyContract.fulfills? "Hello"
+    MyContract.fulfilled_by? "Hello"
     => true
-    MyContract.fulfills? 12
+    MyContract.fulfilled_by? 12
     => false
 
-There is also a "bang" version of the #fulfills method, that raises an error instead 
+There is also a "bang" version of the #fulfilled_by method, that raises an error instead
 of returning false. The error message details why it got raised.
 
-    MyContract.fulfills! :foo 
+    MyContract.fulfilled_by! :foo
     => DuckPond::Contract::ContractInfringementError:
-       One or more clauses from MyContract were not fulfilled by :foo (Symbol) 
+       One or more clauses from MyContract were not fulfilled by :foo (Symbol)
        Expected subject to respond to method 'length'
 
 
-Contracts can be combined into composite "super contracts" - contracts which are made up of 
+Contracts can be combined into composite "super contracts" - contracts which are made up of
 various other contracts. This ties in with the reccomendation of preferring composition over inheritance:
 
     class MyCompositeConrtact < DuckPond::Contract
@@ -75,7 +75,7 @@ various other contracts. This ties in with the reccomendation of preferring comp
     end
 
 Another feature of duckpond is the ability to specify what your expected result from a contract should be. For example,
-the following contract expects a subject to have a method called "even" and for that method, when called, to return a 
+the following contract expects a subject to have a method called "even" and for that method, when called, to return a
 true value:
 
     class MyEvenContract < DuckPond::Contract
@@ -83,7 +83,7 @@ true value:
     end
 
 If the method needs args, you can specify those too. This next contract will pass the string "Hell" to the #include? method,
-and expect the value to be true. This contract will therefore be satisfied by strings containing the word "Hell" that are 
+and expect the value to be true. This contract will therefore be satisfied by strings containing the word "Hell" that are
 five characters long (such as the word "Hello"):
 
     class MyHellContract < DuckPond::Contract
@@ -124,7 +124,7 @@ And then be implemented in a method like this:
 
     class Emailer
       def send(email)
-        IEmailable.fulfills! email
+        IEmailable.fulfilled_by! email
         email.send
       end
     end
@@ -137,7 +137,7 @@ CI tests exist for the following rubies, other versions are not supported but sh
   - 2.3.0
   - 2.2.4
   - 2.1.8
-  - jruby-19mode 
+  - jruby-19mode
 
 
 ## Contributing
