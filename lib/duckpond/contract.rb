@@ -1,11 +1,11 @@
 require 'duckpond/contract/convinience_methods'
 require 'duckpond/contract/contract_infringement_error'
 
-# 
+#
 # DuckPond::Contract
 #
-# Contracts are essentially lists of properties that a class could have. 
-# They are not intended to ever be instantiated, and are completely 
+# Contracts are essentially lists of properties that a class could have.
+# They are not intended to ever be instantiated, and are completely
 # configured at the class level.
 #
 module DuckPond
@@ -56,26 +56,27 @@ module DuckPond
       end
 
       #
-      # fulfills?
+      # fulfilled_by?
       #
       # Returns true if this contract fulfills the passed-in object,
       # otherwise false.
       #
-      def fulfills?(obj)
+      def fulfilled_by?(obj)
         DuckPond::Inspection.new(obj).tap do |inspection|
           return inspection.fulfilled_by? self
         end
       end
 
-      alias_method :fulfilled_by?, :fulfills?
+      # For backward compatibility
+      alias_method :fulfills?, :fulfilled_by?
 
       #
-      # fulfills!
+      # fulfilled_by!
       #
       # Raises a ContractInfringementError unless this contract fulfills
       # the passed in object, otherwise returns true.
       #
-      def fulfills!(obj)
+      def fulfilled_by!(obj)
         DuckPond::Inspection.new(obj).tap do |inspection|
           unless inspection.fulfilled_by? self
             raise ContractInfringementError.new(self, obj, inspection)
@@ -85,7 +86,8 @@ module DuckPond
         end
       end
 
-      alias_method :fulfilled_by!, :fulfills!
+      # For backward compatibility
+      alias_method :fulfills!, :fulfilled_by!
 
     end
   end

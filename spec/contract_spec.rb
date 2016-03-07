@@ -15,28 +15,28 @@ module DuckPond
     #
     # see spec/classes/length_contract.rb
     #
-    describe 'fulfills?' do
+    describe 'fulfilled_by?' do
       context 'when the object is fulfilled by the contract' do
         it 'returns true' do
-          expect(LengthContract.fulfills?("Hello")).to eq true
+          expect(LengthContract.fulfilled_by?("Hello")).to eq true
         end
       end
       context 'when the object is not fulfilled by the contract' do
         it 'returns false' do
-          expect(LengthContract.fulfills?(2)).to eq false
+          expect(LengthContract.fulfilled_by?(2)).to eq false
         end
       end
     end
 
-    describe 'fulfills!' do
+    describe 'fulfilled_by!' do
       context 'when the object is fulfilled by the contract' do
         it 'returns true' do
-          expect{LengthContract.fulfills!("Hello")}.to_not raise_error
+          expect{LengthContract.fulfilled_by!("Hello")}.to_not raise_error
         end
       end
       context 'when the object is not fulfilled by the contract' do
         it 'returns false' do
-         expect{LengthContract.fulfills!(2)}.to raise_error DuckPond::Contract::ContractInfringementError
+         expect{LengthContract.fulfilled_by!(2)}.to raise_error DuckPond::Contract::ContractInfringementError
         end
       end
     end
@@ -56,7 +56,7 @@ module DuckPond
   describe CompositeContract do
     it 'retains its parents quackings' do
       clauses = CompositeContract.clauses
-      expect(clauses.length).to eq 2 
+      expect(clauses.length).to eq 2
       clauses.map {|c|c.options[:method_name]}.tap do |method_names|
         expect(method_names).to include :length
         expect(method_names).to include :chunky_bacon
